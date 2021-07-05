@@ -113,24 +113,25 @@ for (let prop in endpoints.types) {
                                 file: savedFile,
                             }));
 
-                            res.download(outputFile, null, function(err) {
-                                if (err) {
-                                    winston.error(JSON.stringify({
-                                        type: 'download',
-                                        message: err,
-                                    }));
-                                }
-                                winston.info(JSON.stringify({
-                                    action: 'deleting',
-                                    file: outputFile,
-                                }));
-                                if (fs.unlinkSync(outputFile)) {
-                                    winston.info(JSON.stringify({
-                                        action: 'deleted',
-                                        file: outputFile,
-                                    }));
-                                }
-                            });
+                            res.send(outputFile)
+                            // res.download(outputFile, null, function(err) {
+                            //     if (err) {
+                            //         winston.error(JSON.stringify({
+                            //             type: 'download',
+                            //             message: err,
+                            //         }));
+                            //     }
+                            //     winston.info(JSON.stringify({
+                            //         action: 'deleting',
+                            //         file: outputFile,
+                            //     }));
+                            //     if (fs.unlinkSync(outputFile)) {
+                            //         winston.info(JSON.stringify({
+                            //             action: 'deleted',
+                            //             file: outputFile,
+                            //         }));
+                            //     }
+                            // });
                         })
                         .save(outputFile);
             });
